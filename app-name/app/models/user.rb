@@ -1,4 +1,3 @@
 class User < ActiveRecord::Base
- #test
- #test2
+ has_secure_password
 end
