@@ -1,7 +1,11 @@
 #create seed data for users and clients
 
+#create users
+
 lynie = User.create(name: "Lynie", email: "lynie@lynie.com", password: "password")
 patrick = User.create(name: "Patrick", email: "patrick@patrick.com", password: "password")
+
+#create clients
 
 Client.create(first_name: "George", last_name: "Brown", date: "3/20", content: "Prefers hot table, start face up", user_id: lynie.id)
 Client.create(first_name: "Joey", last_name: "Smith", date: "3/18", content: "Prefers no heat, finish on face and scalp", user_id: lynie.id)
