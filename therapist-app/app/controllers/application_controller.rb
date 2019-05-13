@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :welcome #create welcome file or redirect somewhere else (index?)
   end
 
   
