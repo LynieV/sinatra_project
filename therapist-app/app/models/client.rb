@@ -1,4 +1,4 @@
-class ClientInfo < ActiveRecord::Base
+class Client < ActiveRecord::Base
    
     belongs_to :user
 end
