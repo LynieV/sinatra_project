@@ -7,6 +7,12 @@ class UsersController < ApplicationController
         erb :login
     end
 
+    #creating a session (adding key:value pair to session)
+    #receive login form, find and login in user(create session)
+    post '/login' do
+
+    end
+
     get '/signup' do
 
     end
