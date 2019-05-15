@@ -10,11 +10,26 @@ class UsersController < ApplicationController
     #creating a session (adding key:value pair to session)
     #receive login form, find and login in user(create session)
     post '/login' do
-
+        #find user
+        @user = User.find_by(email: params[:email])
+        #authenticate user (email/password combo)
+        if @user.authenticate(params[:password])
+            #login user (create session)
+            session[:user_id] = @user.id
+            #redirect to show
+            redirect "users/#{@user.id}"
+        else
+            #tell user info is invalid and redirect to login
+        end
     end
 
     get '/signup' do
 
+    end
+
+    #create show route to verify login works
+    get '/users/:id' do
+        "SHOW PAGE"
     end
 
 end
