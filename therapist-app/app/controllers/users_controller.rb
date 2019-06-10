@@ -23,13 +23,14 @@ class UsersController < ApplicationController
         end
     end
 
+        #job of this route is to render signup form
     get '/signup' do
-
+        erb :signup
     end
 
     #create show route to verify login works
     get '/users/:id' do
-        "SHOW PAGE"
+        "USER SHOW PAGE"
     end
 
 end
