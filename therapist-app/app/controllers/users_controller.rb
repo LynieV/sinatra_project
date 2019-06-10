@@ -28,6 +28,11 @@ class UsersController < ApplicationController
         erb :signup
     end
 
+    post '/users' do
+        binding.pry
+        #create user and persist user to database
+    end
+
     #create show route to verify login works
     get '/users/:id' do
         "USER SHOW PAGE"
