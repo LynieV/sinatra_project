@@ -34,17 +34,28 @@ class UsersController < ApplicationController
         if params[:name] != "" && params[:email] != "" && params[:password] != ""
             #valid input
             @user = User.create(params)
+            session[:user_id] = @user.id #automatically log in when signed up
             #where to go now? user show page?
             redirect "/users/#{@user.id}"
             #(erb :"/users/show") redirect is the url, erb(render) is the file
         else
             #not valid input
+            #include a message to explain problem?
+            redirect '/signup'
         end
     end
 
     #create show route to verify login works
     get '/users/:id' do
-        "USER SHOW PAGE"
+        @user = User.find_by(id: params[:id])
+
+        erb :"/users/show"
+    end
+
+    #if logged in, how to log out - end session...
+    get '/logout' do
+        session.clear
+        redirect '/'
     end
 
 end
