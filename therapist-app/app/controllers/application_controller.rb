@@ -10,7 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome #create welcome file or redirect somewhere else (index?)
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    else
+      erb :welcome # redirect somewhere else? (index?)
+    end
   end
 
   
