@@ -24,6 +24,7 @@ class ClientsController < ApplicationController
     #show page for client
     get '/clients/:id' do
         @client = Client.find(params[:id])
+        erb :'/clients/'
     end
 
     #index for clients
