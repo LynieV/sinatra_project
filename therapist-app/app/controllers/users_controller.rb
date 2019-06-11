@@ -35,6 +35,8 @@ class UsersController < ApplicationController
             #valid input
             @user = User.create(params)
             #where to go now? user show page?
+            redirect "/users/#{@user.id}"
+            #(erb :"/users/show") redirect is the url, erb(render) is the file
         else
             #not valid input
         end
