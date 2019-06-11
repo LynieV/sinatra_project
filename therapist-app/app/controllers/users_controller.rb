@@ -29,8 +29,15 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        binding.pry
         #create user and persist user to database
+        #only if there is a name, email and password
+        if params[:name] != "" && params[:email] != "" && params[:password] != ""
+            #valid input
+            @user = User.create(params)
+            #where to go now? user show page?
+        else
+            #not valid input
+        end
     end
 
     #create show route to verify login works
