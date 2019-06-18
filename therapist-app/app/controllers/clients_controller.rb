@@ -30,7 +30,7 @@ class ClientsController < ApplicationController
 
     #client edit page
     get '/clients/:id/edit' do
-        erb :'clients/edit'
+        erb :'/clients/edit'
     end
 
     #index for clients
