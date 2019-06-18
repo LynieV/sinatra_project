@@ -25,7 +25,12 @@ class ClientsController < ApplicationController
     #show page for client
     get '/clients/:id' do
         @client = Client.find(params[:id])
-        erb :'/clients/'
+        erb :'/clients/show'
+    end
+
+    #client edit page
+    get '/clients/:id/edit' do
+        erb :'clients/edit'
     end
 
     #index for clients
