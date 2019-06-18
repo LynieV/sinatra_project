@@ -11,9 +11,10 @@ class ClientsController < ApplicationController
             redirect '/'
         end
 
-        if params[:content] != "" #add all required fields
+        if params[:first_name] != "" && params[:last_name] != "" && params[:date] != "" && params[:preferences] != "" && params[:content] != ""
+             #add all required fields
             #create new entry
-            @client = Client.create(content: params[:content], user_id: current_user.id)
+            @client = Client.create(first_name: params[:first_name], last_name: params[:last_name], date: params[:date], preferences: params[:preferences], content: params[:content], user_id: current_user.id)
             #add all params
             redirect "/clients/#{@client.id}"
         else
