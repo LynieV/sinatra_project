@@ -32,14 +32,32 @@ class ClientsController < ApplicationController
     #goes to clients/edit to render edit form
     get '/clients/:id/edit' do
         set_client
-        erb :'/clients/edit'
+        if logged_in?
+            if @client.user == current_user
+                erb :'/clients/edit'
+            else
+                redirect "users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end 
     end
 
     #
     patch '/clients/:id' do
         #find, then update client, then redirect to show?
         set_client #find client
-        "Hello World"
+        if logged_in?
+            if @client.user == current_user
+                #update
+                @client.update(first_name: params[:first_name], last_name: params[:last_name], date: params[:date], preferences: params[:preferences], content: params[:content])
+                redirect "/clients/#{@client.id}"
+            else 
+                redirect "users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
     end
 
     #index for clients
