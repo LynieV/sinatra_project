@@ -24,14 +24,30 @@ class ClientsController < ApplicationController
 
     #show page for client
     get '/clients/:id' do
-        @client = Client.find(params[:id])
+        set_client
         erb :'/clients/show'
     end
 
     #client edit page
+    #goes to clients/edit to render edit form
     get '/clients/:id/edit' do
+        set_client
         erb :'/clients/edit'
     end
 
+    #
+    patch '/clients/:id' do
+        #find, then update client, then redirect to show?
+        set_client #find client
+        "Hello World"
+    end
+
     #index for clients
+
+    private
+
+    #helper method for clients_controller class
+    def set_client
+        @client = Client.find(params[:id])
+    end
 end
