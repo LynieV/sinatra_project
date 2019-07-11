@@ -1,1 +1,11 @@
-client index
+CLIENT INDEX
+
+<% @clients.each do |client| %>
+    <h5><%= client.first_name %></h5>
+    <h6><%= client.last_name %></h6>
+    <%= client.preferences %>
+    <br>
+    <%= client.content %>
+    <%= client.created_at %>
+    <br></br>
+<% end %>
