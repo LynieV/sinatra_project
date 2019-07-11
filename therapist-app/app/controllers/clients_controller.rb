@@ -1,4 +1,10 @@
 class ClientsController < ApplicationController
+
+    get '/clients' do
+        @clients = Client.all
+        erb:'clients/index'
+    end
+
     #get /new to render form to create new client 
     get '/clients/new' do
         erb :'/clients/new'
