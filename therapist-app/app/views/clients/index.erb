@@ -1,11 +1,13 @@
 CLIENT INDEX
+<br></br>
 
 <% @clients.each do |client| %>
-    <h5><%= client.first_name %></h5>
-    <h6><%= client.last_name %></h6>
+    <h5><a href="/clients/<%= client.id %>"><%= client.first_name %></h5>
+    <p><%= client.last_name %></p>
     <%= client.preferences %>
     <br>
     <%= client.content %>
     <%= client.created_at %>
+    <p>Therapist: <%= client.user.name %></p>
     <br></br>
 <% end %>
