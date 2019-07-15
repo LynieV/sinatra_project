@@ -7,4 +7,10 @@
     <p><%= @client.preferences %></p>
     <p><%= @client.content %></p>
 
-    <a href="/clients/<%= @client.id %>/edit">Edit Client</a>
+    <% if editable?(@client) %>
+
+        <a href="/clients/<%= @client.id %>/edit">Edit Client</a>
+
+        Delete Link
+
+    <% end %>
