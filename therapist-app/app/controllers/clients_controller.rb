@@ -39,7 +39,7 @@ class ClientsController < ApplicationController
     get '/clients/:id/edit' do
         set_client
         if logged_in?
-            if @client.user == current_user
+            if editable?(@client)
                 erb :'/clients/edit'
             else
                 redirect "users/#{current_user.id}"
@@ -54,7 +54,7 @@ class ClientsController < ApplicationController
         #find, then update client, then redirect to show?
         set_client #find client
         if logged_in?
-            if @client.user == current_user
+            if editable?(@client)
                 #update
                 @client.update(first_name: params[:first_name], last_name: params[:last_name], date: params[:date], preferences: params[:preferences], content: params[:content])
                 redirect "/clients/#{@client.id}"
@@ -65,6 +65,16 @@ class ClientsController < ApplicationController
             redirect '/'
         end
     end
+
+    #delete '/clients/:id' do
+        #set_client
+        #if editable?(@client)
+            #@client.destroy
+           # redirect '/clients'
+        #else
+            #redirect '/clients'
+        #end
+    #end
 
     #index for clients
 
