@@ -2,7 +2,7 @@ CLIENT INDEX
 <br></br>
 
 <% @clients.each do |client| %>
-    <h5><a href="/clients/<%= client.id %>"><%= client.first_name %></h5>
+    <h5><a href="/clients/<%= client.id %>"><%= client.first_name %></a></h5>
     <p><%= client.last_name %></p>
     <%= client.preferences %>
     <br>
