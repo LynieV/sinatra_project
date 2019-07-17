@@ -10,8 +10,11 @@
     <% if editable?(@client) %>
 
         <a href="/clients/<%= @client.id %>/edit">Edit Client</a>
-
-        Delete Link
         
-
+        <br></br>
+        
+        <form class="" action="/clients/<%= @client.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" name="" value="Delete Client">        
+        </form>
     <% end %>
