@@ -66,17 +66,17 @@ class ClientsController < ApplicationController
         end
     end
 
-    #delete '/clients/:id' do
-        #set_client
-        #if editable?(@client)
-            #@client.destroy
-           # redirect '/clients'
-        #else
-            #redirect '/clients'
-        #end
-    #end
+    delete '/clients/:id' do
+        set_client
+        if editable?(@client)
+            @client.destroy
+            redirect '/clients'
+        else
+            redirect '/clients'
+        end
+    end
 
-    #index for clients
+    
 
     private
 
