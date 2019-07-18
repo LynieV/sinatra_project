@@ -28,22 +28,38 @@ class UsersController < ApplicationController
         erb :signup
     end
 
-    post '/users' do
-        #create user and persist user to database
-        #only if there is a name, email and password
-        if params[:name] != "" && params[:email] != "" && params[:password] != ""
-            #valid input
-            @user = User.create(params)
-            session[:user_id] = @user.id #automatically log in when signed up
-            #where to go now? user show page?
-            redirect "/users/#{@user.id}"
-            #(erb :"/users/show") redirect is the url, erb(render) is the file
+    # post '/users' do
+    #     #create user and persist user to database
+    #     #only if there is a name, email and password
+    #     if params[:name] != "" && params[:email] != "" && params[:password] != "" && !User.find_by(email: params[:email])
+
+    #         #valid input
+    #         #@user = User.create(params)
+    #         @user = User.new(name: params[:name], email: params[:email], password: params[:password]) #retrieve name, email, and password from form and create new user 
+    #         @user.save
+
+    #         session[:user_id] = @user.id #automatically log in when signed up
+    #         #where to go now? user show page?
+    #         redirect "/users/#{@user.id}"
+    #         #(erb :"/users/show") redirect is the url, erb(render) is the file
+    #     else
+    #         #not valid input
+    #         #include a message to explain problem?
+    #         redirect '/signup'
+    #     end
+    # end
+
+    post '/users' do #users signup with email and password only
+        if params[:name] == "" || params[:email] == "" || params[:password] == "" || User.find_by(email: params[:email]) #check if email and password fields are blank
+          redirect to '/signup'
         else
-            #not valid input
-            #include a message to explain problem?
-            redirect '/signup'
+          @user = User.new(name: params[:name], email: params[:email], password: params[:password]) #retrieve name, email, and password from form and create new user 
+          @user.save
+          session[:user_id] = @user.id #login the user by enabling a session
+          redirect "/users/#{@user.id}" #redirect logged in user 
         end
-    end
+      end
+    
 
     #create show route to verify login works
     get '/users/:id' do
