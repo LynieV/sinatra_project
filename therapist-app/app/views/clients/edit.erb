@@ -3,13 +3,13 @@ Edit Client:
 <form class="" action="/clients/<%= @client.id%>" method="post">
     <input type="hidden" name="_method" value="patch">
     <label for="first_name">Client First Name:</label>
-    <input type="text" name="first_name" value="<%= @client.first_name %>"><br>
+    <input type="text" name="first_name" value="<%= @client.first_name %>" required><br>
     <label for="last_name">Client Last Name:</label>
-    <input type="text" name="last_name" value="<%= @client.last_name %>"><br>
+    <input type="text" name="last_name" value="<%= @client.last_name %>" required><br>
     <label for="date">Date:</label>
     <input type="text" name="date" value="<%= @client.date %>"><br>
     <label for="preferences">Client Preferences:</label>
-    <textarea name="preferences"><%= @client.preferences %></textarea><br>
+    <textarea name="preferences" required><%= @client.preferences %></textarea><br>
     <label for="content">SOAP Notes:</label>
     <textarea name="content"><%= @client.content %></textarea><br>
     <input type="submit" name="" value="Update Client">
