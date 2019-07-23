@@ -4,7 +4,7 @@ This is an application built with Ruby and Sinatra, for body therapists.
 
 It helps keep information about specific clients organized and accessable to therapists so they are able to reference client preferences and previous session information.
 
-Video Walkthrough: 
+Video Walkthrough: https://drive.google.com/open?id=1ESCUm3aTZpkMPZL4GW3lMZ6VcfknEXTt
 
 
 #Usage
