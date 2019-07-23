@@ -13,13 +13,14 @@ class UsersController < ApplicationController
         #find user
         @user = User.find_by(email: params[:email])
         #authenticate user (email/password combo)
-        if @user.authenticate(params[:password])
+        if @user && @user.authenticate(params[:password])
             #login user (create session)
             session[:user_id] = @user.id
             #redirect to show
             redirect "users/#{@user.id}"
         else
-            #tell user info is invalid and redirect to login
+            #redirect to signup
+            redirect to '/signup'
         end
     end
 
