@@ -13,9 +13,7 @@ class ClientsController < ApplicationController
     #post clients for create new client info
     post '/clients' do
         # create new and save, only save if there is content and user is logged in
-        if !logged_in?
-            redirect '/'
-        end
+        redirect_if_not_logged_in
 
         if params[:first_name] != "" && params[:last_name] != "" && params[:date] != "" && params[:preferences] != "" && params[:content] != ""
              #add all required fields
@@ -38,31 +36,28 @@ class ClientsController < ApplicationController
     #goes to clients/edit to render edit form
     get '/clients/:id/edit' do
         set_client
-        if logged_in?
-            if editable?(@client)
-                erb :'/clients/edit'
-            else
-                redirect "users/#{current_user.id}"
-            end
+        redirect_if_not_logged_in
+
+        if editable?(@client)
+            erb :'/clients/edit'
         else
-            redirect '/'
-        end 
+            redirect "users/#{current_user.id}"
+        end
+    
     end
 
     #
     patch '/clients/:id' do
         #find, then update client, then redirect to show?
         set_client #find client
-        if logged_in?
-            if editable?(@client)
-                #update
-                @client.update(first_name: params[:first_name], last_name: params[:last_name], date: params[:date], preferences: params[:preferences], content: params[:content])
-                redirect "/clients/#{@client.id}"
-            else 
-                redirect "users/#{current_user.id}"
-            end
-        else
-            redirect '/'
+        redirect_if_not_logged_in
+
+        if editable?(@client)
+            #update
+            @client.update(first_name: params[:first_name], last_name: params[:last_name], date: params[:date], preferences: params[:preferences], content: params[:content])
+            redirect "/clients/#{@client.id}"
+        else 
+            redirect "users/#{current_user.id}"
         end
     end
 
@@ -83,5 +78,11 @@ class ClientsController < ApplicationController
     #helper method for clients_controller class
     def set_client
         @client = Client.find(params[:id])
+    end
+
+    def redirect_if_not_logged_in
+        if !logged_in?
+            redirect '/'
+        end
     end
 end
