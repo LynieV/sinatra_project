@@ -1,3 +1,13 @@
 <h2><%= @user.name %></h2>
 
 <%= @user.email %>
+
+<% @user.clients.each do |client| %>
+    <h5><a href="/clients/<%= client.id %>"><%= client.first_name %></a></h5>
+    <p><%= client.last_name %></p>
+    <%= client.preferences %>
+    <br>
+    <%= client.content %>
+    <%= client.created_at %>
+    <br></br>
+<% end %>
